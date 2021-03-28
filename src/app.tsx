@@ -39,7 +39,7 @@ export function App() {
         <h1>Online File Corruptor</h1>
         <h5>Corrupt it, send it, and blame it on their computer</h5>
       </div>
-      <div id="drop_zone" onDrop={drop} onDragOver={drag}>
+      <div id="drop-zone" onDrop={drop} onDragOver={drag}>
         <DropZone status={status} files={files} />
       </div>
 

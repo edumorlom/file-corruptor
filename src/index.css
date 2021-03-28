@@ -5,7 +5,6 @@ body {
 	background-color: #00539C;
 }
 
-
 .title {
 	color: white;
 	margin: 4%;
@@ -15,7 +14,7 @@ body {
 	margin: 0.8rem;
 }
 
-#drop_zone {
+#drop-zone {
 	margin: 100px auto;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	border-radius: 12px;
@@ -27,7 +26,7 @@ body {
 	background-color: white;
 }
 
-#drop_zone:hover {
+#drop-zone:hover {
 	box-shadow: black 0px 3px 8px;
 }
 
@@ -65,4 +64,10 @@ button:hover {
 	font-weight: bold;
 	flex-grow: 2;
 	text-align: left;
+}
+
+@media only screen and (max-width: 600px) {
+	#drop-zone {
+		max-width: 85%;
+	}
 }
