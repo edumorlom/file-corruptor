@@ -1,0 +1,68 @@
+body {
+	font-family: 'Montserrat', sans-serif;
+	text-align: center;
+	margin: 0;
+	background-color: #00539C;
+}
+
+
+.title {
+	color: white;
+	margin: 4%;
+}
+
+.title * {
+	margin: 0.8rem;
+}
+
+#drop_zone {
+	margin: 100px auto;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	border-radius: 12px;
+	padding: 12px;
+	text-align: center;
+	max-width: 500px;
+	height: 500px;
+	overflow: scroll;
+	background-color: white;
+}
+
+#drop_zone:hover {
+	box-shadow: black 0px 3px 8px;
+}
+
+button {
+	padding: 20px;
+	border-radius: 12px;
+	border: none;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	font-size: 1rem;
+}
+
+button:hover {
+	cursor: pointer;
+	background-color: white;
+	box-shadow: black 0px 3px 8px;
+	color: black;
+}
+
+.file {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	gap: 2rem;
+}
+
+.file svg {
+	margin: 1rem;
+	height: 80px;
+}
+
+.file a {
+	font-size: 1.2rem;
+	font-weight: bold;
+	flex-grow: 2;
+	text-align: left;
+}
