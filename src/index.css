@@ -56,7 +56,6 @@ button:hover {
 
 .file svg {
 	margin: 1rem;
-	height: 80px;
 }
 
 .file a {
@@ -64,6 +63,25 @@ button:hover {
 	font-weight: bold;
 	flex-grow: 2;
 	text-align: left;
+}
+
+.download-btn {
+	fill: #00539C;
+}
+
+.download-btn-clicked {
+	animation: color-change 1.5s ease-in;
+	fill: grey;
+}
+
+@keyframes color-change {
+	0% {
+		fill: #00539C;
+	}
+
+	100% {
+		fill: grey;
+	}
 }
 
 @media only screen and (max-width: 600px) {

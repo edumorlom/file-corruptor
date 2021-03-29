@@ -6,7 +6,7 @@ export default function FileBinary(props: {
   status: string;
 }): JSX.Element {
   const [fileDownloaded, setFileDownloaded] = useState<boolean>(false);
-  const fileAbbreviation = props.file?.name.split('.').pop() || '';
+  const fileExtension = props.file?.name.split('.').pop() || '';
 
   const readFileContent = (file: File) => {
     const reader = new FileReader();
@@ -17,18 +17,30 @@ export default function FileBinary(props: {
     });
   };
 
-  const corruptAndDownload = (): void => {
+  /**
+   * Given the status and the file, corrupt and download the file.
+   * Ensure that the status id "download" before proceeding.
+   * Otherwise, the file is not ready for download.
+   */
+  const corruptAndDownloadFile = (status: string, file: File): void => {
+    // Ensure that the file is ready for download.
+    if (status !== 'download') return;
+
+    // If it is, corrupt it and download it.
     setFileDownloaded(true);
-    readFileContent(props.file).then(buffer => {
+    readFileContent(file).then(buffer => {
       const binary = new Int8Array(buffer as ArrayBuffer);
       const corruptedBinary = binary.map(elem => elem + 1);
-      fileDownload(corruptedBinary, props.file.name);
+      fileDownload(corruptedBinary, file.name);
     });
   };
 
   return (
-    <div className={'file'} onClick={corruptAndDownload}>
-      <FileIconSVG fileAbbreviation={fileAbbreviation} />
+    <div
+      className={'file'}
+      onClick={() => corruptAndDownloadFile(props.status, props.file)}
+    >
+      <FileIconSVG fileExtension={fileExtension} />
       <a>{props.file?.name}</a>
       {props.status === 'download' && (
         <DownloadSVG downloaded={fileDownloaded} />
@@ -37,20 +49,28 @@ export default function FileBinary(props: {
   );
 }
 
+/**
+ * Given a string, it performs a hash function to return a color for that string.
+ * The color will always be the same for the same string.
+ * @param str the input string.
+ * @returns the color in hexadecimal.
+ */
 const stringToColor = (str: string): string => {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash);
   }
+
   let color = '#';
   for (let i = 0; i < 3; i++) {
     const value = (hash >> (i * 8)) & 0xff;
     color += ('00' + value.toString(16)).substr(-2);
   }
+
   return color;
 };
 
-const FileIconSVG = (props: {fileAbbreviation: string}): JSX.Element => {
+const FileIconSVG = (props: {fileExtension: string}): JSX.Element => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +109,7 @@ const FileIconSVG = (props: {fileAbbreviation: string}): JSX.Element => {
           transform="matrix(1 0 0 1 0 0)"
           d="M417 416C 417 424.8 409.8 432 401 432L401 432L49 432C 40.2 432 33 424.8 33 416L33 416L33 256C 33 247.2 40.2 240 49 240L49 240L401 240C 409.8 240 417 247.2 417 256L417 256L417 416z"
           stroke="none"
-          fill={stringToColor(props.fileAbbreviation)}
+          fill={stringToColor(props.fileExtension)}
           fill-rule="nonzero"
         />
         <g transform="matrix(1 0 0 1 0 0)"></g>
@@ -107,7 +127,7 @@ const FileIconSVG = (props: {fileAbbreviation: string}): JSX.Element => {
           style="fill:#FFFFFF;font-family:'Montserrat',sans-serif;"
           font-size="96"
         >
-          {props.fileAbbreviation.toUpperCase()}
+          {props.fileExtension.toUpperCase()}
         </text>
       </g>
     </svg>
@@ -128,8 +148,7 @@ function DownloadSVG(props: {downloaded: boolean}): JSX.Element {
       <g>
         <path
           d="M9.843 52.312L50 92.469l40.157-40.157-8.032-8.031-26.446 26.446V7.469H44.321v63.258L17.875 44.281z"
-          fill={props.downloaded ? 'grey' : '#00539C'}
-          id="XMLID_1312_"
+          className={props.downloaded ? 'download-btn-clicked' : 'download-btn'}
         ></path>
       </g>
     </svg>
