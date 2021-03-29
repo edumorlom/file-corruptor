@@ -35,13 +35,19 @@ export default function FileBinary(props: {
     });
   };
 
+  const MAX_FILENAME_NAME = 10;
+  let fileName = props.file?.name;
+  if (fileName.length > MAX_FILENAME_NAME) {
+    fileName = fileName.substring(0, MAX_FILENAME_NAME) + '...';
+  }
+
   return (
     <div
       className={'file'}
       onClick={() => corruptAndDownloadFile(props.status, props.file)}
     >
       <FileIconSVG fileExtension={fileExtension} />
-      <a>{props.file?.name}</a>
+      <a>{fileName}</a>
       {props.status === 'download' && (
         <DownloadSVG downloaded={fileDownloaded} />
       )}
@@ -142,13 +148,12 @@ function DownloadSVG(props: {downloaded: boolean}): JSX.Element {
       viewBox="0 0 100 100"
       id="Layer_1"
       version="1.1"
-      width="40"
-      className="download-button"
+      className="download-btn"
     >
       <g>
         <path
           d="M9.843 52.312L50 92.469l40.157-40.157-8.032-8.031-26.446 26.446V7.469H44.321v63.258L17.875 44.281z"
-          className={props.downloaded ? 'download-btn-clicked' : 'download-btn'}
+          className={props.downloaded ? 'download-btn-clicked' : ''}
         ></path>
       </g>
     </svg>

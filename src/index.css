@@ -7,20 +7,17 @@ body {
 
 .title {
 	color: white;
-	margin: 4%;
-}
-
-.title * {
-	margin: 0.8rem;
+	margin: 2%;
 }
 
 #drop-zone {
-	margin: 100px auto;
+	margin: 5% auto;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	border-radius: 12px;
 	padding: 12px;
 	text-align: center;
 	max-width: 500px;
+	min-width: 300px;
 	height: 500px;
 	overflow: scroll;
 	background-color: white;
@@ -51,22 +48,21 @@ button:hover {
 	display: flex;
 	align-items: center;
 	cursor: pointer;
-	gap: 2rem;
-}
-
-.file svg {
-	margin: 1rem;
+	flex-wrap: wrap;
+	padding: 1rem;
 }
 
 .file a {
+	text-align: left;
 	font-size: 1.2rem;
 	font-weight: bold;
 	flex-grow: 2;
-	text-align: left;
+	margin-left: 1.5rem;
 }
 
 .download-btn {
 	fill: #00539C;
+	height: 40px;
 }
 
 .download-btn-clicked {

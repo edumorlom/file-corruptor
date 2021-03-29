@@ -47,10 +47,7 @@ export function App() {
     <>
       <div className="title">
         <h1>Online File Corruptor</h1>
-        <h5>
-          Corrupt it, send it, and blame it on their computer to extend your
-          deadline
-        </h5>
+        <h5>Corrupt it, send it, and blame it on their machine</h5>
       </div>
       <div
         id="drop-zone"
@@ -61,6 +58,12 @@ export function App() {
       >
         <DropZone status={status} files={files} />
       </div>
+
+      {status === 'initial' && (
+        <h5 className="title">
+          Don't worry, the original files won't be modified!
+        </h5>
+      )}
 
       {status === 'ready' && (
         <button class={'corrupt-btn'} onClick={corruptFiles}>
