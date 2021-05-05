@@ -33,7 +33,7 @@ jobs:
         server: edumorales.dev
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: build/
+        local-dir: dist/
         server-dir: public_html/corruptor/
         exclude: .git*
           - .git*/**
