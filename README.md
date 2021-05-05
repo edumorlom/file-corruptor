@@ -5,7 +5,7 @@ This is a project that I created as a way to learn about SVGs and binary manipul
 ## Install Dependencies
 
 1. Install [NodeJS 15+ and NPM 7+](https://nodejs.org/).
-2. Run `npm install` inside the `file-corruptor/` directory.
+2. Run `npm install` inside the main directory.
 
 ## How to Run
 
@@ -14,3 +14,4 @@ This is a project that I created as a way to learn about SVGs and binary manipul
 ## How to Build
 
 1. Run `npm run build` to build the static files for deployment which can be found under the `dist/` directory.
+2. Run `sed -i -e 's/\/assets/.\/assets/' dist/index.html` inside the main directory.
