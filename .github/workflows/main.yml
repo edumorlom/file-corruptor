@@ -26,7 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build --if-present
-    - run: sed 's/\/assets/assets/' dist/index.html
+    - run: sed 's/\/assets/.\/assets/' dist/index.html
     - name: Upload files to cPanel FTP
       uses: SamKirkland/FTP-Deploy-Action@master
       with:
