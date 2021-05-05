@@ -2,7 +2,6 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 name: Node.js CI
-
 on:
   push:
     branches: [ master ]
@@ -26,7 +25,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build --if-present
-    - run: sed -i bak -e 's/\/assets/.\/corruptor\/assets/' dist/index.html
+    - run: sed -i -e 's/\/assets/.\/corruptor\/assets/' dist/index.html
     - name: Upload files to cPanel FTP
       uses: SamKirkland/FTP-Deploy-Action@master
       with:
